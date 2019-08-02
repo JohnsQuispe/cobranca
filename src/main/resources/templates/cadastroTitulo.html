@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layoutPadrao.html}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="content-type" content="text/html"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<section layout:fragment="conteudo">
+    <div class="container">
+       <div class="card margin-top-slg">
+           <div class="card-header d-flex justify-content-between">
+               <h7>Novo título</h7>
+               <a th:href="@{/titulos/}">Voltar para pesquisa</a>
+           </div>
+           <form method="POST" th:action="@{/titulos/salvar}" th:object="${titulo}">
+                <div class="form-group d-flex margin-top-sm">
+                    <label class="col-sm-2" for="descricao">Descrição</label>
+                    <input type="text" class="form-control col-sm-4" id="descricao" th:field="*{descricao}" th:errorclass="is-invalid">
+                    <span class="col-sm-3 margin-top-sm text-danger" th:errors="*{descricao}"/>
+                </div>
+               <div class="form-group d-flex margin-top-sm">
+                   <label class="col-sm-2" for="data-vencimento">Data de Vencimento</label>
+                   <input type="date" class="form-control col-sm-4" id="data-vencimento" th:field="*{dataVencimento}" th:errorclass="is-invalid"/>
+                   <span class="col-sm-3 margin-top-sm text-danger" th:errors="*{dataVencimento}"/>
+               </div>
+               <div class="form-group d-flex margin-top-sm">
+                   <label class="col-sm-2" for="valor">Valor</label>
+                   <input type="text" class="form-control col-sm-4 has-error" id="valor" th:field="*{valor}" th:errorclass="is-invalid">
+                   <span class="col-sm-3 margin-top-sm text-danger" th:errors="*{valor}"/>
+               </div>
+               <div class="form-group d-flex margin-top-sm">
+                   <label class="col-sm-2" for="valor">Status</label>
+                   <select class="form-control col-sm-4" th:field="*{statusTitulo}">
+                       <option th:each="status: ${T(br.com.johnsquispe.cobranca.domain.StatusTitulo).values()}" th:value="${status}" th:text="${status.descricao}"/>
+                   </select>
+               </div>
+               <div class="form-group d-flex justify-content-end margin-top-sm col-sm-3">
+                   <div class="">
+                       <button class="btn btn-primary">Salvar</button>
+                   </div>
+               </div>
+           </form>
+       </div>
+    </div>
+</section>
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/cobranca.js}"></script>
+</body>
+</html>
