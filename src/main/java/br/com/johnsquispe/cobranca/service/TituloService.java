@@ -54,7 +54,7 @@ public class TituloService {
 
     public List<Titulo> filtrar (TituloFilter tituloFilter) {
 
-        String descricao = tituloFilter.getDescricao() == null ? "%" : tituloFilter.getDescricao();
+        String descricao = tituloFilter.getDescricao() == null ? "" : tituloFilter.getDescricao();
 
         return tituloRepository.findByDescricaoContaining(descricao);
 
