@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layoutPadrao.html}">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="content-type" content="text/html"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<section layout:fragment="conteudo">
+    <div class="container">
+        <div class="card margin-top-slg">
+            <div class="card-header d-flex justify-content-between">
+                <h7>Pesquisa de Títulos</h7>
+                <a th:href="@{/titulos/novo}">Novo título</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col-md-1">#</th>
+                            <th scope="col-md-4">Descrição</th>
+                            <th class="text-center" scope="col-md-2">Data de Vencimento</th>
+                            <th class="text-center" scope="col-md-2">Valor</th>
+                            <th class="text-center" scope="col-md-2">Status</th>
+                            <th class="text-center" scope="col-md-1">Operações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="titulo : ${titulos}">
+                            <th class="text-center" scope="row">1</th>
+                            <td><span th:text="${titulo.descricao}"/></td>
+                            <td class="text-center">10/03/2019</td>
+                            <td class="text-center">R$ 10,23</td>
+                            <td class="text-center"><span class="badge badge-success">Recebido</span></td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                        <i class="material-icons">edit</i>
+                                        <i class="material-icons">call_received</i>
+                                        <i class="material-icons">delete_forever</i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+        </div>
+    </div>
+</section>
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/cobranca.js}"></script>
+</body>
+</html>
